@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 interface Pokemon {
   name: string
-  url: string
+  image: string
 }
 
 const Pokedex = () => {
@@ -15,7 +15,20 @@ const Pokedex = () => {
     async function fetchPokemon() {
       const res = await fetch(currentUrl)
       const data = await res.json()
-      setPokemonList(data.results)
+
+      // Fetch details for each Pokemon to get their image
+      const promises = data.results.map(async (pokemon: { name: string; url: string }) => {
+        const res = await fetch(pokemon.url)
+        const details = await res.json()
+        return {
+          name: pokemon.name,
+          image: details.sprites.front_default
+        }
+      })
+
+      const results = await Promise.all(promises)
+
+      setPokemonList(results)
       setNextUrl(data.next)
       setPrevUrl(data.previous)
     }
@@ -27,8 +40,9 @@ const Pokedex = () => {
       <h1>Pokédex</h1>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
         {pokemonList.map((pokemon) => (
-          <div key={pokemon.name} style={{ border: '1px solid black', padding: '1rem', width: '150px' }}>
-            {pokemon.name}
+          <div key={pokemon.name} style={{ border: '1px solid black', padding: '1rem', width: '150px', textAlign: 'center' }}>
+            <img src={pokemon.image} alt={pokemon.name} style={{ width: '80px', height: '80px' }} />
+            <p>{pokemon.name}</p>
           </div>
         ))}
       </div>
