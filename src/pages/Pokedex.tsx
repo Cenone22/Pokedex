@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'  // For linking the pokemon cards
+
 
 interface Pokemon {
   name: string
@@ -35,15 +37,35 @@ const Pokedex = () => {
     fetchPokemon()
   }, [currentUrl])
 
+  const getRandomColor = () => {
+    const colors = ['#f5b7b1', '#aed6f1', '#a9dfbf', '#f9e79f', '#d2b4de', '#f7c59f', '#92a8d1']
+    return colors[Math.floor(Math.random() * colors.length)]
+  }
+  
   return (
     <div style={{ padding: '1rem' }}>
       <h1>Pokédex</h1>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
         {pokemonList.map((pokemon) => (
-          <div key={pokemon.name} style={{ border: '1px solid black', padding: '1rem', width: '150px', textAlign: 'center' }}>
-            <img src={pokemon.image} alt={pokemon.name} style={{ width: '80px', height: '80px' }} />
-            <p>{pokemon.name}</p>
-          </div>
+        //Linking each pokemon card with the pokemon details page when clicked on
+        <Link to={`/pokemon/${pokemon.name}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div key={pokemon.name} style={{
+            backgroundColor: getRandomColor(),
+            borderRadius: '12px',
+            padding: '1rem',
+            width: '180px',
+            textAlign: 'center',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+            transition: 'transform 0.2s',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+        >
+            <img src={pokemon.image} alt={pokemon.name} style={{ width: '100px', height: '100px' }} />
+            <p style={{ marginTop: '0.5rem', fontWeight: 'bold', textTransform: 'capitalize' }}>{pokemon.name}</p>
+            </div>
+        </Link>
+
         ))}
       </div>
 
