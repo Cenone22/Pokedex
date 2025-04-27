@@ -44,30 +44,38 @@ const Pokedex = () => {
   
   return (
     <div style={{ padding: '1rem' }}>
-      <h1>Pokédex</h1>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+      <h1 style={{ display: 'flex',flexWrap: 'wrap', justifyContent: 'center',}}>Pokédex</h1>
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: '1rem',
+        marginTop: '2rem',
+        }}
+>
         {pokemonList.map((pokemon) => (
-        //Linking each pokemon card with the pokemon details page when clicked on
-        <Link to={`/pokemon/${pokemon.name}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div key={pokemon.name} style={{
-            backgroundColor: getRandomColor(),
-            borderRadius: '12px',
-            padding: '1rem',
-            width: '180px',
-            textAlign: 'center',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-            transition: 'transform 0.2s',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-        >
-            <img src={pokemon.image} alt={pokemon.name} style={{ width: '100px', height: '100px' }} />
-            <p style={{ marginTop: '0.5rem', fontWeight: 'bold', textTransform: 'capitalize' }}>{pokemon.name}</p>
+            <Link to={`/pokemon/${pokemon.name}`} style={{ textDecoration: 'none', color: 'inherit' }} key={pokemon.name}>
+            <div
+                style={{
+                backgroundColor: getRandomColor(),
+                borderRadius: '12px',
+                padding: '1rem',
+                width: '180px',
+                textAlign: 'center',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                transition: 'transform 0.2s',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+            >
+                <img src={pokemon.image} alt={pokemon.name} style={{ width: '100px', height: '100px' }} />
+                <p style={{ marginTop: '0.5rem', fontWeight: 'bold' }}>
+                {pokemon.name.toUpperCase()}
+                </p>
             </div>
-        </Link>
-
+            </Link>
         ))}
-      </div>
+    </div>
 
       <div style={{ marginTop: '2rem' }}>
         {prevUrl && <button onClick={() => setCurrentUrl(prevUrl)}>Previous</button>}
