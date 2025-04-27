@@ -7,18 +7,19 @@ const About = () => {
           margin: '0 auto',
           lineHeight: '1.6',
           fontFamily: 'Arial, sans-serif',
-          fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
+          fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', // Responsive font size
         }}
       >
-        {/* Centered Section */}
+        {/* Centered Section: Main title and introduction paragraphs */}
         <div style={{ textAlign: 'center' }}>
+          {/* Main Heading */}
           <h1 style={{
-            fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
-            marginBottom: '1rem'
-          }}>
+            fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', // Responsive heading size
+            marginBottom: '1rem'}}> 
             About This Pokédex
           </h1>
   
+          {/* Introduction paragraphs about the project */}
           <p style={{ marginBottom: '1rem' }}>
             Welcome to the Pokédex — your ultimate guide to the wonderful and mysterious world of Pokémon!
             This project was developed as part of a web development assignment, designed to demonstrate the use of modern React practices,
@@ -33,19 +34,25 @@ const About = () => {
   
           <p style={{ marginBottom: '2rem' }}>
             The purpose of this Pokédex is to allow trainers (users!) to browse Pokémon, discover their stats, 
-            abilities, and unique characteristics by fetching real-time data from the <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer" style={{ color: '#0077cc' }}>PokéAPI</a>.
+            abilities, and unique characteristics by fetching real-time data from the 
+            <a 
+              href="https://pokeapi.co/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ color: '#0077cc' }}>PokéAPI</a>.
           </p>
         </div>
   
-        {/* Left-aligned Technologies Used Section */}
         <div style={{ marginBottom: '2rem', textAlign: 'left' }}>
+          {/* Subheading */}
           <h2 style={{
-            fontSize: 'clamp(1.2rem, 4vw, 2rem)',
+            fontSize: 'clamp(1.2rem, 4vw, 2rem)', // Responsive subheading
             marginBottom: '1rem',
-            textAlign: 'center'
-          }}>
-            Technologies Used
+            textAlign: 'center'}}>
+                Technologies Used
           </h2>
+  
+          {/* List of technologies */}
           <ul style={{ listStylePosition: 'inside', padding: 0 }}>
             <li>React + Vite for a fast and modern frontend setup</li>
             <li>React Router for seamless page navigation</li>
@@ -54,7 +61,6 @@ const About = () => {
           </ul>
         </div>
   
-        {/* Centered Professor Oak quote */}
         <div style={{ textAlign: 'center' }}>
           <p style={{ marginTop: '2rem', fontStyle: 'italic' }}>
             "The world of dreams and adventures with Pokémon awaits!" — Professor Oak
