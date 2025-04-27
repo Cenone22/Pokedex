@@ -47,7 +47,7 @@ const PokemonDetails = () => {
       <div style={{ marginBottom: '1rem' }}>
         <button onClick={() => navigate(-1)}>← Back to Pokedex</button>
       </div>
-      <h1>{pokemon.name}</h1>
+      <h1>{pokemon.name.toUpperCase()}</h1>
       <img src={pokemon.sprites.front_default} alt={pokemon.name} />
       <p><strong>Height:</strong> {pokemon.height}</p>
       <p><strong>Weight:</strong> {pokemon.weight}</p>
